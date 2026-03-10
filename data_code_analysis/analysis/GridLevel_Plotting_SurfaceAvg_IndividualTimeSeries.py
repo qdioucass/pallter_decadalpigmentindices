@@ -399,7 +399,7 @@ plottheilsen = True #True, False
 x = 'Year'
 xticks = 'auto' #manual, auto
 
-y = 'Evenness'
+y = 'WWUpper'
 yscale = 'linear' #linear, log, symlog
 ylims = 'auto' #manual, auto, dynamic
 ymin = -0.025
@@ -431,6 +431,7 @@ ylabel = y + units
 # ylabel = 'WW Lower\nBoundary Depth (m)'
 # ylabel = 'WW Thickness (m)'
 # ylabel = 'WW % Observation'
+ylabel = '$\mathregular{WW_{Upper}}$ (m)'
 
 font_size = 12
 ident_size = 24

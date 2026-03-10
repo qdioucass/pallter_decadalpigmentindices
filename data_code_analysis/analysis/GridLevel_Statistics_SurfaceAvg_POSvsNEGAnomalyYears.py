@@ -336,6 +336,6 @@ def PosNegAnomDiffTest(df, anomaly, param, level='station'):
 # =============================================================================
 
 anomalyparam = 'MLD'
-testparam = 'MixedFlagellates'
+testparam = 'Cryptophytes'
 PosNegAnomDiffTest(df, anomalyparam, testparam, level='grid')
 # =============================================================================

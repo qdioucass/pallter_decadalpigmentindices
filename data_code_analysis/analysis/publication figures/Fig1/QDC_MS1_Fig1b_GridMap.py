@@ -310,8 +310,8 @@ facecolor3 = '#ecf0f1'
 
 #plot points with event type distinction
 markersize = 20
-ax.scatter(ctd_nsx, ctd_nsy, s=markersize, transform=data_proj, marker='D',
-            edgecolor='black', linewidth=0.75, facecolor='#B57602', zorder=10) #Brown:825501
+ax.scatter(ctd_nsx, ctd_nsy, s=markersize+5, transform=data_proj, marker='s',
+            edgecolor='black', linewidth=0.75, facecolor='palegoldenrod', zorder=10) #Brown:825501 - DarkOrange: #B57602
 ax.scatter(uw_nsx, uw_nsy, s=markersize, transform=data_proj, marker='o', 
             edgecolor='black', linewidth=0.75, facecolor='#FFA500', zorder=10)
 
@@ -336,7 +336,7 @@ gl.yformatter=ctk.LatitudeFormatter()
 # # Save Figure as PDF for Compiling in Adobe Illustrator
 # # =============================================================================
 # current_directory = Path.cwd()
-# absolute_path = Path("analysis/publication figures/Figure 1 - Map/")
+# absolute_path = Path("analysis/publication figures/Fig1/")
 # filename = Path("Fig1b_WAPLTERGridMap.pdf")
 # savepath = str(current_directory / absolute_path / filename)
 
@@ -344,4 +344,3 @@ gl.yformatter=ctk.LatitudeFormatter()
 
 # plt.savefig(savepath, transparent=True)
 # # =============================================================================
-

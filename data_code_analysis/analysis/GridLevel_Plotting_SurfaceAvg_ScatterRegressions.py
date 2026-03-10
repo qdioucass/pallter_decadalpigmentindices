@@ -254,8 +254,8 @@ height = 2
 fig = plt.figure(figsize=(width,height), dpi=1200)
 ax1 = fig.add_subplot(1, 1, 1)
 markersize = 20
-x='MLD'
-y='MixedFlagellates'
+x='SIRetrProx'
+y='WWUpper'
 c=None
 cmap = 'viridis'
 xscale = 'linear' #linear, log, symlog
@@ -291,7 +291,7 @@ ax1.set_yscale(yscale)
 ax1.set_xlabel(x, fontweight='normal', size=10)
 ax1.set_ylabel(y, fontweight='normal', size=10)
 ax1.tick_params('both', labelsize=8)
-ax1.set_ylim(0, 1.1)
+# ax1.set_ylim(0, 1.1)
 # ax1.set_ylim(33.8, 34.1)
 # ax1.set_xlim(0, 75)
 ax1.minorticks_on()

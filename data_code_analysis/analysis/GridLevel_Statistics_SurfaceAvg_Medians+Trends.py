@@ -196,9 +196,11 @@ def fill_missing_years(df):
 # =============================================================================
 current_directory = Path.cwd()
 absolute_path = Path("local data/")
-filename = Path("PALLTER_StationLevel_SurfaceAvgCoreDataframe.csv")
+filename = Path("PALLTER_EventLevel_DepthAvgCoreDataframe.csv")
 loadpath = str(current_directory / absolute_path / filename)
 df_SM = pd.read_csv(loadpath)
+
+df_SM = df_SM[df_SM['Year']==2009]
 
 #calculate yearly medians
 temp = remove_bad_years(df_SM)
@@ -206,63 +208,68 @@ df_YM = temp.groupby(['Year']).median().reset_index()
 df_YM = fill_missing_years(df_YM)
 
 #determine climatological stats
-climatology_stats = df_YM.describe()
+climatology_stats = temp.describe()
+ccc = df_SM[['RoundedGridLine', 'RoundedGridStation', 'Event', 'Depth', 
+             'Diatoms', 'Cryptophytes', 'MixedFlagellates', 'MLD', 'QI']].dropna()
+ccc = ccc[ccc['Depth']<=7]
 # =============================================================================
 
 
 # =============================================================================
 # Define list of parameters and regions to run calculations on
 # =============================================================================
-parameters = ['MLD',
-              'QI',
-              'max_N2',
+parameters = [
+              # 'MLD',
+              # 'QI',
+              # 'max_N2',
               
-              'WWUpper',
-              'WWLower',
-              'WWThickness',
-              'WW%Obs',
+              # 'WWUpper',
+              # 'WWLower',
+              # 'WWThickness',
+              # 'WW%Obs',
               
-              'WWMinTemp',
-              'WWMinTempDepth',
-              # 'MinTemp',
-              # 'MinTempDepth',
+              # 'WWMinTemp',
+              # 'WWMinTempDepth',
+              # # 'MinTemp',
+              # # 'MinTempDepth',
               
-              'Temperature', 
-              'Salinity',
-              'Density',
+              # 'Temperature', 
+              # 'Salinity',
+              # 'Density',
               
-              'WWMedTemp',
-              'WWMedSal',
-              'WWMedDens',
+              # 'WWMedTemp',
+              # 'WWMedSal',
+              # 'WWMedDens',
               
-              # 'BttmTemp',
-              # 'BttmSal',
-              # 'BttmDens',
+              # # 'BttmTemp',
+              # # 'BttmSal',
+              # # 'BttmDens',
               
-               'SIDuration',
-               'SIRetrProx',
+              #  'SIDuration',
+              #  'SIRetrProx',
               
-              'Chlorophylla',
-              'PrimaryProduction',
-              'SpecPrimProd',
+              # 'Chlorophylla',
+              # 'PrimaryProduction',
+              # 'SpecPrimProd',
               
-              'Diatoms',
-              'Cryptophytes',
-              'MixedFlagellates',
-              'Type4Haptophytes',
-              'Prasinophytes',
-              'Evenness',
+               'Diatoms',
+               'Cryptophytes',
+               'MixedFlagellates',
+               'Type4Haptophytes',
+               'Prasinophytes',
+               'Evenness',
               
-              'TCaro:Chla',
-              'PSC:Chla',
-              'PPC:Chla',
-              'PrimPPC:Chla',
-              'SecPPC:Chla',
-              'PPC:TCaro',
-              'PSC:TCaro',
-              'PPC:PSC',
-              'PrimPPC:PPC',
-              'SecPPC:PPC']
+              # 'TCaro:Chla',
+              # 'PSC:Chla',
+              # 'PPC:Chla',
+              # 'PrimPPC:Chla',
+              # 'SecPPC:Chla',
+              # 'PPC:TCaro',
+              # 'PSC:TCaro',
+              # 'PPC:PSC',
+              # 'PrimPPC:PPC',
+              # 'SecPPC:PPC'
+              ]
 
 regions = ['Full Grid', 
            'North', 
@@ -376,17 +383,17 @@ filt_results_table = results_table[results_table['Region'] == 'FG']
 # filt_results_table = filt_results_table[filt_results_table['Measurement'] == 'PPC:PSC']
 # =============================================================================
 
-# =============================================================================
-# Save results in Excel file
-# =============================================================================
-current_directory = Path.cwd()
-absolute_path = Path("local data/")
+# # =============================================================================
+# # Save results in Excel file
+# # =============================================================================
+# current_directory = Path.cwd()
+# absolute_path = Path("local data/")
 
-filename1 = Path("PALLTER_Regional_Medians+TrendsTable.xlsx")
-savepath1 = str(current_directory / absolute_path / filename1)
-results_table.to_excel(str(savepath1), index=False)
+# filename1 = Path("PALLTER_Regional_Medians+TrendsTable.xlsx")
+# savepath1 = str(current_directory / absolute_path / filename1)
+# results_table.to_excel(str(savepath1), index=False)
 
-filename2 = Path("PALLTER_FullGrid_Medians+TrendsTable.xlsx")
-savepath2 = str(current_directory / absolute_path / filename2)
-filt_results_table.to_excel(str(savepath2), index=True)
-# =============================================================================
+# filename2 = Path("PALLTER_FullGrid_Medians+TrendsTable.xlsx")
+# savepath2 = str(current_directory / absolute_path / filename2)
+# filt_results_table.to_excel(str(savepath2), index=True)
+# # =============================================================================
